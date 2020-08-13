@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session, Query
+from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
 from fastapi import HTTPException
 
@@ -26,6 +26,11 @@ def delete_card(id: int, db: Session):
 
 def update_card(id: int, db: Session, item: schemas.UpdateCard):
     stored_card = db.query(models.Post).filter(models.Post.id == id).first()
+    if not stored_card:
+        raise HTTPException(
+            status_code=404,
+            detail="Stored card not found.",
+        )
     stored_data = jsonable_encoder(stored_card)
     update_data = item.dict(exclude_unset=True)
     for field in stored_data:
