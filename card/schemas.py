@@ -1,0 +1,23 @@
+from pydantic import BaseModel
+
+
+class CardBase(BaseModel):
+    project: str
+    activity: str
+    duration: str
+
+    class Config:
+        orm_mode = True
+
+
+class CardList(CardBase):
+    id: int
+
+
+class CardCreate(CardBase):
+    pass
+
+
+class UpdateCard(CardBase):
+    pass
+
