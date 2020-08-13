@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-from fastapi.encoders import jsonable_encoder
 from fastapi import HTTPException
 
 from . import models, schemas
@@ -36,7 +35,15 @@ def update_card(id: int, db: Session, item: schemas.UpdateCard):
             status_code=404,
             detail="Stored card not found.",
         )
-    stored_data = jsonable_encoder(stored_card)
+    stored_data = {
+        "id": stored_card.id,
+        "project": stored_card.project,
+        "activity": stored_card.activity,
+        "duration": stored_card.duration,
+        "date": stored_card.date,
+        "user": stored_card.user,
+        "user_id": stored_card.user_id
+    }
     update_data = item.dict(exclude_unset=True)
     for field in stored_data:
         if field in update_data:

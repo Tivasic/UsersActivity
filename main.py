@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from starlette.requests import Request
 from starlette.responses import Response
+
 from database.db import SessionLocal
 from router import router
 
