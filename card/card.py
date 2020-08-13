@@ -3,19 +3,19 @@ from fastapi import APIRouter
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from utils import get_db
-from . import service, schemas
+from card import service, schemas
 
 
 router = APIRouter()
 
 
-@router.get("/", response_model=List[schemas.PostList])
+@router.get("/", response_model=List[schemas.CardList])
 def post_list(db: Session = Depends(get_db)):
     return service.get_post_list(db)
 
 
-@router.post("/create/", response_model=schemas.PostCreate)
-def create_post(item: schemas.PostCreate, db: Session = Depends(get_db)):
+@router.post("/create/", response_model=schemas.CardCreate)
+def create_post(item: schemas.CardCreate, db: Session = Depends(get_db)):
     return service.create_post_list(db=db, item=item)
 
 
