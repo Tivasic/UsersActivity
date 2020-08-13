@@ -10,13 +10,13 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[schemas.CardList])
-def post_list(db: Session = Depends(get_db)):
-    return service.get_post_list(db)
+def list_card(db: Session = Depends(get_db)):
+    return service.get_list_card(db)
 
 
 @router.post("/create/", response_model=schemas.CardCreate)
-def create_post(item: schemas.CardCreate, db: Session = Depends(get_db)):
-    return service.create_post_list(db=db, item=item)
+def create_card(item: schemas.CardCreate, db: Session = Depends(get_db)):
+    return service.create_card(db=db, item=item)
 
 
 @router.delete("/delete/")

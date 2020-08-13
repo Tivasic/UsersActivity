@@ -5,11 +5,11 @@ from fastapi import HTTPException
 from . import models, schemas
 
 
-def get_post_list(db: Session, skip: int = 0, limit: int = 100):
+def get_list_card(db: Session):
     return db.query(models.Post).all()
 
 
-def create_post_list(db: Session, item: schemas.CardCreate):
+def create_card(db: Session, item: schemas.CardCreate):
     card = models.Post(**item.dict())
     db.add(card)
     db.commit()
@@ -19,6 +19,11 @@ def create_post_list(db: Session, item: schemas.CardCreate):
 
 def delete_card(id: int, db: Session):
     card = db.query(models.Post).get(id)
+    if not card:
+        raise HTTPException(
+            status_code=404,
+            detail="Card not found.",
+        )
     db.delete(card)
     db.commit()
     return ["Запись", id, "удалена"]
