@@ -9,13 +9,13 @@ from user.models import User
 
 
 class Post(Base):
-    __tablename__ = "card"
+    __tablename__ = "UserActivities"
 
     id = Column(Integer, primary_key=True, index=True, unique=True)
 
     project = Column(String)
     activity = Column(String)
-    duration = Column(String)
+    duration = Column(Integer)
     date = Column(DateTime)
 
     user = Column(Integer, ForeignKey("user.id"))

@@ -1,10 +1,13 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
 class CardBase(BaseModel):
     project: str
     activity: str
-    duration: str
+    duration: int
+    date: datetime
 
     class Config:
         orm_mode = True
