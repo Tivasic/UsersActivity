@@ -4,7 +4,7 @@ from fastapi.params import Depends
 from sqlalchemy.orm import Session
 from utils import get_db
 
-from card import service, schemas
+from card import service, schemas, models
 
 
 router = APIRouter()
@@ -29,4 +29,8 @@ async def delete(id: int,  db: Session = Depends(get_db)):
 async def update_card(id: int, item: schemas.UpdateCard, db: Session = Depends(get_db)):
     return service.update_card(id=id, db=db, item=item)
 
+
+@router.get("/project_list/", response_model=List[schemas.project_list])
+def project_list(project: str, db: Session = Depends(get_db)):
+    return service.project_list(project, db)
 

@@ -13,6 +13,12 @@ class CardBase(BaseModel):
         orm_mode = True
 
 
+class duration_project(BaseModel):
+    project: str
+    activity: str
+    duration: int
+
+
 class CardList(CardBase):
     id: int
 
@@ -23,4 +29,9 @@ class CardCreate(CardBase):
 
 class UpdateCard(CardBase):
     pass
+
+
+class project_list(CardBase):
+    pass
+
 

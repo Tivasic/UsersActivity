@@ -28,6 +28,16 @@ def delete_card(id: int, db: Session):
     return ["Запись", id, "удалена"]
 
 
+def project_list(project: str, db: Session):
+    list_project = db.query(models.Post).filter(models.Post.project == project).all()
+    if not list_project:
+        raise HTTPException(
+            status_code=404,
+            detail="Project not found.",
+        )
+    return list_project
+
+
 def update_card(id: int, db: Session, item: schemas.UpdateCard):
     stored_card = db.query(models.Post).filter(models.Post.id == id).first()
     if not stored_card:
