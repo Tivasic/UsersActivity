@@ -30,6 +30,7 @@ def delete_card(id: int, db: Session):
 
 def project_list(project: str, db: Session):
     list_project = db.query(models.Post).filter(models.Post.project == project).all()
+
     if not list_project:
         raise HTTPException(
             status_code=404,

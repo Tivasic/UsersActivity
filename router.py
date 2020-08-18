@@ -3,4 +3,4 @@ from card import card
 
 router = APIRouter()
 
-router.include_router(card.router, prefix="/card")
+router.include_router(card.router, prefix="/UserActivities")

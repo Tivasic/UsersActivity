@@ -34,3 +34,5 @@ async def update_card(id: int, item: schemas.UpdateCard, db: Session = Depends(g
 def project_list(project: str, db: Session = Depends(get_db)):
     return service.project_list(project, db)
 
+
+
