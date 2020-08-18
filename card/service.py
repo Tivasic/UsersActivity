@@ -41,8 +41,6 @@ def project_list(project: str, db: Session):
 
 def duration_project(project: str, db: Session):
     list_project = db.query(models.Post).filter(models.Post.project == project).all()
-    print(db.query(models.Post.duration).filter(models.Post.project == project).all())
-    print(dir(db.query(models.Post.duration).filter(models.Post.project == project).all()))
     if not list_project:
         raise HTTPException(
             status_code=404,
