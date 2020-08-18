@@ -4,7 +4,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-class CardBase(BaseModel):
+class Activities(BaseModel):
     project: str
     activity: str
     duration: int
@@ -14,24 +14,24 @@ class CardBase(BaseModel):
         orm_mode = True
 
 
-class CardList(CardBase):
-    id: int
-
-
-class DurationProject(BaseModel):
-    projects: List[CardBase]
+class DurationProjects(BaseModel):
+    projects: List[Activities]
     duration: int
 
 
-class CardCreate(CardBase):
+class ActivitiesList(Activities):
+    id: int
+
+
+class ActivityCreate(Activities):
     pass
 
 
-class UpdateCard(CardBase):
+class ActivityUpdate(Activities):
     pass
 
 
-class project_list(CardBase):
+class ProjectsList(Activities):
     pass
 
 
