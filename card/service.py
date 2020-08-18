@@ -5,10 +5,13 @@ from . import models, schemas
 
 
 def get_activities(db: Session):
+    # Получает все записи из базы данных.
     return db.query(models.Post).all()
 
 
 def create_activity(db: Session, item: schemas.ActivityCreate):
+    # Создает новый словарь в соответствии со схемой
+    # и добавляет запись на сервер.
     activities = models.Post(**item.dict())
     db.add(activities)
     db.commit()
@@ -17,6 +20,8 @@ def create_activity(db: Session, item: schemas.ActivityCreate):
 
 
 def delete_activity(id: int, db: Session):
+    # Получает необходимую запись из БД по ID
+    # и удаляет ее.
     activities = db.query(models.Post).get(id)
     if not activities:
         raise HTTPException(
@@ -29,6 +34,8 @@ def delete_activity(id: int, db: Session):
 
 
 def projects_list(project: str, db: Session):
+    # Получает необходимую запись из БД в соответствии
+    # фильтрации по проектам и возвращает ее списком.
     list_projects = db.query(models.Post).filter(models.Post.project == project).all()
     if not list_projects:
         raise HTTPException(
@@ -39,6 +46,9 @@ def projects_list(project: str, db: Session):
 
 
 def duration_projects(project: str, db: Session):
+    # Получает необходимую запись из БД в соответствии
+    # фильтрации по проектам, а так же получает все
+    # затраченное время на проекты и суммирует их.
     list_projects = db.query(models.Post).filter(models.Post.project == project).all()
     if not list_projects:
         raise HTTPException(
@@ -51,6 +61,10 @@ def duration_projects(project: str, db: Session):
 
 
 def update_activity(id: int, db: Session, item: schemas.ActivityUpdate):
+    # Получает необходимую запись из БД в соответствии
+    # фильтрации по ID. Далее распаковываются значения
+    # и заносятся в новый словарь измененные данные и
+    # затем добавляет обновленную запись в БД.
     stored_activities = db.query(models.Post).filter(models.Post.id == id).first()
     if not stored_activities:
         raise HTTPException(
