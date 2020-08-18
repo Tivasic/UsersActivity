@@ -39,6 +39,20 @@ def project_list(project: str, db: Session):
     return list_project
 
 
+def duration_project(project: str, db: Session):
+    list_project = db.query(models.Post).filter(models.Post.project == project).all()
+    print(db.query(models.Post.duration).all())
+    print(dir(db.query(models.Post.duration).all()))
+    if not list_project:
+        raise HTTPException(
+            status_code=404,
+            detail="Project not found.",
+        )
+
+    list_project = sum([value for value, in db.query(models.Post.duration).all()])
+    return list_project
+
+
 def update_card(id: int, db: Session, item: schemas.UpdateCard):
     stored_card = db.query(models.Post).filter(models.Post.id == id).first()
     if not stored_card:

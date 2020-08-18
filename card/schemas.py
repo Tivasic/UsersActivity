@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from pydantic import BaseModel
 
@@ -15,6 +16,11 @@ class CardBase(BaseModel):
 
 class CardList(CardBase):
     id: int
+
+
+class DurationProject(BaseModel):
+    projects: List[CardBase]
+    duration: int
 
 
 class CardCreate(CardBase):

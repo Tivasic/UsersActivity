@@ -35,4 +35,9 @@ def project_list(project: str, db: Session = Depends(get_db)):
     return service.project_list(project, db)
 
 
+@router.get("/duration_project/", response_model=List[schemas.DurationProject])
+def project_list(project: str, db: Session = Depends(get_db)):
+    return service.duration_project(project, db)
+
+
 
