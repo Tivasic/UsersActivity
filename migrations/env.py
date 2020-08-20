@@ -1,15 +1,13 @@
 import sys
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
+from sqlalchemy import engine_from_config, pool
 from alembic import context
 
-sys.path = ['', '..'] + sys.path[1:]
-
-from database.db import SQLALCHEMY_DATABASE_URL
 from database.base import Base
+from database.db import SQLALCHEMY_DATABASE_URL
+
+sys.path = ["", ".."] + sys.path[1:]
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -66,17 +64,13 @@ def run_migrations_online():
 
     """
     configuration = config.get_section(config.config_ini_section)
-    configuration['sqlalchemy.url'] = SQLALCHEMY_DATABASE_URL
+    configuration["sqlalchemy.url"] = SQLALCHEMY_DATABASE_URL
     connectable = engine_from_config(
-        configuration,
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
+        configuration, prefix="sqlalchemy.", poolclass=pool.NullPool,
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
