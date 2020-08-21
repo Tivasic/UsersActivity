@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-
-from user_activities import activities
+from card import card
 
 router = APIRouter()
-router.include_router(activities.router, prefix="/UserActivities")
+
+router.include_router(card.router, prefix="/UserActivities")
