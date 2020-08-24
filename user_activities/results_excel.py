@@ -1,11 +1,11 @@
 import xlsxwriter
 from sqlalchemy.orm import Session
 
-from . import models
+from database import table_model
 
 
 def save_results_to_excel(filename: str, db: Session):
-    results = db.query(models.Post).all()
+    results = db.query(table_model.Post).all()
     filename_prefix = filename + ".xlsx"
     workbook = xlsxwriter.Workbook(filename_prefix)
     worksheet = workbook.add_worksheet()
