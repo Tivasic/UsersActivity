@@ -7,7 +7,12 @@ from database import table_model
 
 def get_activities(db: Session):
     # Получает все записи из базы данных.
-    return db.query(table_model.Post).all()
+    activities = db.query(table_model.Post).all()
+    if not activities:
+        raise HTTPException(
+            status_code=404, detail="Activities not found.",
+        )
+    return activities
 
 
 def create_activity(db: Session, item: schemas.ActivityCreate):
@@ -26,7 +31,7 @@ def delete_activity(activity_id: int, db: Session):
     activities = db.query(table_model.Post).get(activity_id)
     if not activities:
         raise HTTPException(
-            status_code=404, detail="Card not found.",
+            status_code=404, detail="Activities not found.",
         )
     db.delete(activities)
     db.commit()
