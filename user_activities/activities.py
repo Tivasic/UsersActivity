@@ -41,6 +41,7 @@ async def update_activity(
 
 @router.get("/projects_list/", response_model=List[schemas.ProjectsList])
 def projects_list(project: str, db: Session = Depends(get_db)):
+    # TODO: Переименовать этот метод, он не соответствует смыслу.
     """Вывод всех имеющихся записей в базе данных по проекту."""
     return service.projects_list(project, db)
 

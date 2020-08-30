@@ -27,4 +27,6 @@ def save_results_to_excel(filename: str, db: Session):
         worksheet.write(row_count, 2, result.duration, cell_format)
         row_count += 1
     workbook.close()
+
+    #  TODO: Почему такой странный формат результатов?
     return ["Отчет", filename, "создан"]

@@ -13,6 +13,7 @@ class Post(Base):
     project = Column(String)
     activity = Column(String)
     duration = Column(Integer)
+    # TODO: Для даты точно нужен Datetime?
     date = Column(DateTime)
 
     user = Column(Integer, ForeignKey("user.id"))
