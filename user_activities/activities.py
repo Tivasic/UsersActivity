@@ -52,6 +52,6 @@ def duration_projects(project: str, db: Session = Depends(get_db)):
 
 
 @router.get("/results_excel/", )
-def get_excel(filename: str, db: Session = Depends(get_db)):
+def get_excel(filename: str, year: int, month: int, day: int, db: Session = Depends(get_db)):
     """Создание отчета в xlsx формате."""
-    return results_excel.save_results_to_excel(filename, db)
+    return results_excel.save_results_to_excel(filename, year, month, day, db)
