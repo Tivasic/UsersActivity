@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from starlette.requests import Request
-from starlette.responses import Response
 import uvicorn
 
 from database.db import SessionLocal

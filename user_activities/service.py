@@ -38,7 +38,7 @@ def delete_activity(activity_id: int, db: Session):
     return ["Запись", activity_id, "удалена"]
 
 
-def projects_list(project: str, db: Session):
+def sorted_projects(project: str, db: Session):
     # Получает необходимую запись из БД в соответствии
     # фильтрации по проектам и возвращает ее списком.
     list_projects = db.query(table_model.Post).filter(table_model.Post.project == project).all()

@@ -39,11 +39,10 @@ async def update_activity(
     return service.update_activity(activity_id=activity_id, db=db, item=item)
 
 
-@router.get("/projects_list/", response_model=List[schemas.ProjectsList])
-def projects_list(project: str, db: Session = Depends(get_db)):
-    # TODO: Переименовать этот метод, он не соответствует смыслу.
+@router.get("/sorted_projects/", response_model=List[schemas.SortedProjects])
+def sorted_projects(project: str, db: Session = Depends(get_db)):
     """Вывод всех имеющихся записей в базе данных по проекту."""
-    return service.projects_list(project, db)
+    return service.sorted_projects(project, db)
 
 
 @router.get("/duration_projects/", response_model=schemas.DurationProjects)

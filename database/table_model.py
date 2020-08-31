@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from database.db import Base
@@ -13,8 +13,6 @@ class Post(Base):
     project = Column(String)
     activity = Column(String)
     duration = Column(Integer)
-    # TODO: Для даты точно нужен Datetime?
-    date = Column(DateTime)
-
+    date = Column(Date)
     user = Column(Integer, ForeignKey("user.id"))
     user_id = relationship(User)

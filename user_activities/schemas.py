@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 from typing import List
 
 from pydantic import BaseModel
@@ -8,7 +8,7 @@ class Activities(BaseModel):
     project: str
     activity: str
     duration: int
-    date: datetime
+    date: date
 
     class Config:
         orm_mode = True
@@ -31,5 +31,5 @@ class ActivityUpdate(Activities):
     pass
 
 
-class ProjectsList(Activities):
+class SortedProjects(Activities):
     pass
