@@ -7,7 +7,7 @@ from database import table_model
 
 def save_results_to_excel(filename: str, year: int, month: int, day: int, db: Session):
     results = db.query(table_model.Post).filter(
-        extract('year', table_model.Post.date) >= year,
+        extract('year', table_model.Post.date) == year,
         extract('month', table_model.Post.date) == month,
         extract('day', table_model.Post.date) >= day).all()
 
