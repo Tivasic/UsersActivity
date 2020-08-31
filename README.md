@@ -10,7 +10,7 @@ pip install -r requirements.txt
 3. Настроить авто миграция:
 
 ```
- alembic revision —autogenerate -m “First”
+ alembic revision --autogenerate -m “First”
  alembic upgrade head
 ```
 
