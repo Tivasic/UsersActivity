@@ -32,11 +32,11 @@ def save_results_to_excel(filename: str, year: int, month: int, day: int, db: Se
 
     row_count = 1
     for result in results:
-            worksheet.write(row_count, 0, result.project)
-            worksheet.write(row_count, 1, result.activity)
-            worksheet.write(row_count, 2, result.duration)
-            worksheet.write(row_count, 3, result.date, date_format)
-            row_count += 1
+        worksheet.write(row_count, 0, result.project)
+        worksheet.write(row_count, 1, result.activity)
+        worksheet.write(row_count, 2, result.duration)
+        worksheet.write(row_count, 3, result.date, date_format)
+        row_count += 1
     workbook.close()
 
-    return
+    return {"filename": filename_prefix}
