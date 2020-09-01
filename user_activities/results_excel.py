@@ -1,6 +1,9 @@
+from pathlib import Path
+
 import xlsxwriter
 from sqlalchemy import extract
 from sqlalchemy.orm import Session
+from fastapi.responses import FileResponse
 
 from database import table_model
 
@@ -40,3 +43,9 @@ def save_results_to_excel(filename: str, year: int, month: int, day: int, db: Se
     workbook.close()
 
     return {"filename": filename_prefix}
+
+
+def download_file():
+    base_path = Path()
+    file_path = base_path / "Test.xlsx"
+    return FileResponse(path=file_path)

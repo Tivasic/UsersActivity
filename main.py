@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from starlette.requests import Request
 import uvicorn
-from pathlib import Path
+
 from database.db import SessionLocal
 from router import router
 
@@ -29,13 +28,6 @@ async def get_version():
     :return:
     """
     return "Version"
-
-
-@app.get("/file")
-async def download_file():
-    base_path = Path()
-    file_path = base_path / "Test.xlsx"
-    return FileResponse(path=file_path)
 
 
 def __main():
