@@ -1,11 +1,15 @@
-from fastapi import FastAPI
-from starlette.requests import Request
 import uvicorn
+from fastapi import FastAPI
+from fastapi.templating import Jinja2Templates
+from starlette.requests import Request
 
 from database.db import SessionLocal
 from router import router
 
+
 app = FastAPI()
+app.include_router(router)
+templates = Jinja2Templates(directory="templates")
 
 
 @app.middleware("http")
@@ -18,7 +22,11 @@ async def db_session_middleware(request: Request, call_next):
     return response
 
 
-app.include_router(router)
+@app.get("/")
+def index(request: Request):
+    return templates.TemplateResponse("index.html", {
+        "request": request
+    })
 
 
 @app.get("/version")

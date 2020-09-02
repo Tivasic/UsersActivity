@@ -1,7 +1,6 @@
 from typing import List
 
 from fastapi import APIRouter
-
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
 
@@ -56,9 +55,3 @@ def duration_projects(project: str, db: Session = Depends(get_db)):
 def get_excel(filename: str, year: int, month: int, day: int, db: Session = Depends(get_db)):
     """Создание отчета в xlsx формате."""
     return results_excel.save_results_to_excel(filename, year, month, day, db)
-
-
-@router.get("/file/", )
-async def download_file():
-    """Загрузка Excel отчета."""
-    return results_excel.download_file()
