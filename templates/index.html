@@ -1,16 +1,31 @@
 <html>
- <head>
-  <meta charset="utf-8">
-  <title>Home</title>
- </head>
- <body>
-  <p><a href="/docs">Все функции сервера</a>
-  <p>Отчет за период:</p>
-  <p><input type="text" name="filename" value="filename"></p>
-  <p><input type="text" name="day" value="day"></p>
-  <p><input type="text" name="month" value="month"></p>
-  <p><input type="text" name="year" value="year"></p>
-  <a href="http://127.0.0.1:8000/UserActivities/results_excel/?filename=tivas&year=2020&month=8&day=25"
-     download>Скачать отчет</a>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Отчет</title>
+  </head>
+  <body>
+  <p><a href="UserActivities/list_activities/">Все записи активностей</a></p>
+    <p>Отчет:</p>
+    <p><input id="filename" type="text" name="filename" value="filename" /></p>
+    <p><input id="day" type="text" name="day" value="day" /></p>
+    <p><input id="month" type="text" name="month" value="month" /></p>
+    <p><input id="year" type="text" name="year" value="year" /></p>
+    <a id="link" href="#" download>Скачать файл</a>
+    <script>
+      const $filename = document.getElementById("filename");
+      const $day = document.getElementById("day");
+      const $month = document.getElementById("month");
+      const $year = document.getElementById("year");
+      const $link = document.getElementById("link");
+      $link.onclick = function (e) {
+        e.preventDefault();
+        url = `UserActivities/results_excel/?filename=${$filename.value}&year=${$year.value}&month=${$month.value}&day=${$day.value}`;
+        const a = document.createElement("a");
+        a.href = url;
+        a.setAttribute("download", $filename.value);
+        a.click();
+        return
+      };
+    </script>
+  </body>
 </html>
