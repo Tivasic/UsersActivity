@@ -1,6 +1,7 @@
 import xlsxwriter
 from sqlalchemy import extract
 from sqlalchemy.orm import Session
+from fastapi.responses import FileResponse
 
 from database import table_model
 
@@ -39,4 +40,4 @@ def save_results_to_excel(filename: str, year: int, month: int, day: int, db: Se
         row_count += 1
     workbook.close()
 
-    return {"filename": filename_prefix}
+    return FileResponse(filename_prefix)
